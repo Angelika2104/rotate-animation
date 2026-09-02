@@ -4,28 +4,63 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Jazz Rotation</title>
+  <title>Proove Vinyl Player</title>
 
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       min-height: 100vh;
+
       display: flex;
       justify-content: center;
       align-items: center;
+
+      font-family: Arial, sans-serif;
       background: transparent;
     }
 
-    .rotating-image {
-      width: 500px;
-      max-width: 90%;
-      height: auto;
+    .vinyl-player {
+      width: 100%;
+      max-width: 900px;
 
-      animation: rotateImage 13s linear infinite;
-      transform-origin: center center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      padding: 30px 20px;
     }
 
-    @keyframes rotateImage {
+
+    /* =========================
+       ГОЛОВНА ПЛАТІВКА
+    ========================= */
+
+    .main-vinyl-area {
+      width: 100%;
+      min-height: 470px;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .main-vinyl {
+      width: 430px;
+      max-width: 80vw;
+      height: auto;
+
+      display: block;
+
+      transform-origin: center center;
+
+      animation: vinylRotate 13s linear infinite;
+    }
+
+    @keyframes vinylRotate {
       from {
         transform: rotate(0deg);
       }
@@ -34,16 +69,334 @@
         transform: rotate(360deg);
       }
     }
+
+
+    /* =========================
+       МЕНЮ
+    ========================= */
+
+    .vinyl-menu {
+      width: 100%;
+      max-width: 650px;
+
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+
+      gap: 16px;
+
+      margin-top: 20px;
+    }
+
+
+    /* Карточка */
+
+    .vinyl-button {
+      width: 100%;
+      min-height: 145px;
+
+      border: 1px solid #eeeeee;
+      border-radius: 18px;
+
+      background: #ffffff;
+
+      padding: 16px 12px;
+
+      cursor: pointer;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+    }
+
+
+    /* Hover не змінює колір карточки */
+
+    .vinyl-button:hover {
+      transform: translateY(-2px);
+    }
+
+
+    /* ВИБРАНА КАРТОЧКА */
+
+    .vinyl-button.active {
+      background: #c9e8fb;
+      border-color: #c9e8fb;
+    }
+
+
+    /* Маленька платівка */
+
+    .vinyl-button img {
+      width: 90px;
+      height: 90px;
+
+      object-fit: contain;
+      display: block;
+    }
+
+
+    /* Назва */
+
+    .vinyl-name {
+      margin-top: 8px;
+
+      font-size: 14px;
+      font-weight: 600;
+
+      color: #222222;
+    }
+
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 600px) {
+
+      .vinyl-player {
+        padding: 20px 12px;
+      }
+
+      .main-vinyl-area {
+        min-height: 340px;
+      }
+
+      .main-vinyl {
+        width: 300px;
+      }
+
+      .vinyl-menu {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .vinyl-button {
+        min-height: 125px;
+      }
+
+      .vinyl-button img {
+        width: 75px;
+        height: 75px;
+      }
+    }
+
   </style>
 </head>
 
+
 <body>
 
-  <img
-    src="images/jazz.png"
-    class="rotating-image"
-    alt="Jazz"
-  >
+  <div class="vinyl-player">
+
+
+    <!-- =========================
+         ГОЛОВНА ПЛАТІВКА
+    ========================== -->
+
+    <div class="main-vinyl-area">
+
+      <img
+        id="mainVinyl"
+        class="main-vinyl"
+        src="images/default.png"
+        alt="default"
+      >
+
+    </div>
+
+
+    <!-- =========================
+         6 КАРТОЧОК
+    ========================== -->
+
+    <div class="vinyl-menu">
+
+
+      <!-- DEFAULT -->
+
+      <button
+        class="vinyl-button active"
+        data-image="images/default.png"
+        type="button"
+      >
+
+        <img
+          src="images/default.png"
+          alt="default"
+        >
+
+        <span class="vinyl-name"></span>
+
+      </button>
+
+
+      <!-- JAZZ -->
+
+      <button
+        class="vinyl-button"
+        data-image="images/jazz.png"
+        type="button"
+      >
+
+        <img
+          src="images/jazz.png"
+          alt="jazz"
+        >
+
+        <span class="vinyl-name"></span>
+
+      </button>
+
+
+      <!-- CLASSIC -->
+
+      <button
+        class="vinyl-button"
+        data-image="images/classsic.png"
+        type="button"
+      >
+
+        <img
+          src="images/classsic.png"
+          alt="classsic"
+        >
+
+        <span class="vinyl-name"></span>
+
+      </button>
+
+
+      <!-- ELECTRO -->
+
+      <button
+        class="vinyl-button"
+        data-image="images/electro.png"
+        type="button"
+      >
+
+        <img
+          src="images/electro.png"
+          alt="electro"
+        >
+
+        <span class="vinyl-name"></span>
+
+      </button>
+
+
+      <!-- POPULAR -->
+
+      <button
+        class="vinyl-button"
+        data-image="images/popular.png"
+        type="button"
+      >
+
+        <img
+          src="images/popular.png"
+          alt="popular"
+        >
+
+        <span class="vinyl-name"></span>
+
+      </button>
+
+
+      <!-- ROCK -->
+
+      <button
+        class="vinyl-button"
+        data-image="images/rock.png"
+        type="button"
+      >
+
+        <img
+          src="images/rock.png"
+          alt="rock"
+        >
+
+        <span class="vinyl-name"></span>
+
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <script>
+
+    const mainVinyl =
+      document.getElementById("mainVinyl");
+
+    const vinylButtons =
+      document.querySelectorAll(".vinyl-button");
+
+
+    vinylButtons.forEach(button => {
+
+      const imagePath =
+        button.dataset.image;
+
+
+      /* Назва береться з назви PNG */
+
+      const fileName =
+        imagePath
+          .split("/")
+          .pop()
+          .replace(".png", "");
+
+
+      button
+        .querySelector(".vinyl-name")
+        .textContent = fileName;
+
+
+      /* Попередньо завантажуємо картинки */
+
+      const preloadImage =
+        new Image();
+
+      preloadImage.src =
+        imagePath;
+
+
+      /* Натискання */
+
+      button.addEventListener("click", function () {
+
+
+        /* Всі карточки знову білі */
+
+        vinylButtons.forEach(btn => {
+          btn.classList.remove("active");
+        });
+
+
+        /* Натиснута стає #c9e8fb */
+
+        this.classList.add("active");
+
+
+        /* Змінюємо головну платівку */
+
+        mainVinyl.src =
+          imagePath;
+
+        mainVinyl.alt =
+          fileName;
+
+      });
+
+    });
+
+  </script>
 
 </body>
 </html>
