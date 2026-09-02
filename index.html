@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Jazz Rotation</title>
+
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: transparent;
+    }
+
+    .rotating-image {
+      width: 500px;
+      max-width: 90%;
+      height: auto;
+
+      animation: rotateImage 13s linear infinite;
+      transform-origin: center center;
+    }
+
+    @keyframes rotateImage {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <img
+    src="images/jazz.png"
+    class="rotating-image"
+    alt="Jazz"
+  >
+
+</body>
+</html>
